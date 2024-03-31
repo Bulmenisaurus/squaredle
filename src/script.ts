@@ -9,7 +9,7 @@ const main = () => {
     };
 
     const puzzleContainer = document.getElementById('puzzle-container')!;
-    const lineContainer = document.getElementById('line-highlight') as any as SVGPolylineElement;
+    const lineContainer = document.getElementById('line-highlight') as any as SVGPathElement;
 
     const puzzleRenderer = new PuzzleRenderer(puzzle, puzzleContainer, lineContainer);
     const puzzleLogic = new PuzzleLogic(puzzle);
