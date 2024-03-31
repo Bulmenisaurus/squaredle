@@ -1,0 +1,55 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+#board-wrapper {
+    display: grid;
+}
+
+#puzzle-container {
+    grid-column: 1;
+    grid-row: 1;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 400px;
+    height: 400px;
+    gap: 5%;
+}
+
+#puzzle-container .letter {
+    background-color: #e0e0e0;
+    border: 1px solid grey;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    user-select: none;
+
+    font-size: 40px;
+    font-family: RobotoWeb, Roboto, Arial, sans-serif;
+}
+
+#lines {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+#line-highlight {
+    stroke: red;
+    opacity: 0.5;
+    fill: none;
+    stroke-width: 25;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
