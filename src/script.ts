@@ -14,10 +14,9 @@ const main = () => {
     const puzzleRenderer = new PuzzleRenderer(puzzle, puzzleContainer, lineContainer);
     const puzzleLogic = new PuzzleLogic(puzzle);
 
-    console.log(puzzleRenderer);
-
     window.addEventListener('keydown', (e) => {
-        const key = e.key.toUpperCase();
+        const key = 'abcdefghijklmnopqrstuvwxyz'.includes(e.key) ? e.key.toUpperCase() : e.key;
+
         puzzleLogic.handleKey(key);
         const currentPath = puzzleLogic.getCurrentWordPath();
 
