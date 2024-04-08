@@ -1,6 +1,7 @@
 export interface PuzzleData {
     sideLength: number;
     letters: string;
+    words: string[];
 }
 
 export interface Coordinate {

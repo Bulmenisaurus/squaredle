@@ -24,7 +24,7 @@ body {
     gap: 5%;
 }
 
-#puzzle-container .letter {
+#puzzle-container .letter-container {
     background-color: #e0e0e0;
     border: 1px solid grey;
     border-radius: 5px;
@@ -32,6 +32,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 
     user-select: none;
 
@@ -39,7 +40,23 @@ body {
     font-family: RobotoWeb, Roboto, Arial, sans-serif;
 }
 
+.start-num {
+    color: rgb(203, 15, 15);
+    font-size: 20px;
+    position: absolute;
+    left: 10%;
+    bottom: 10%;
+}
+
+.include-num {
+    font-size: 20px;
+    position: absolute;
+    right: 10%;
+    bottom: 10%;
+}
+
 #lines {
+    z-index: 1;
     grid-column: 1;
     grid-row: 1;
 }

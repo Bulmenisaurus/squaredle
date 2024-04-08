@@ -1,4 +1,6 @@
 import { Coordinate, PuzzleData } from './types';
+import { Monomitter, monomitter } from './monomitter';
+import { WordManager } from './wordManager';
 
 const toCoordinate = (index: number): Coordinate => {
     return { x: index % 3, y: Math.floor(index / 3) };
@@ -76,12 +78,19 @@ const findWord = (
     }
 };
 
+export interface TileInfo {
+    starting: number;
+    containing: number;
+}
+
 export class PuzzleLogic {
     puzzle: PuzzleData;
     letterBuffer: string[];
+    userFindWord: Monomitter<string>;
     constructor(puzzleInfo: PuzzleData) {
         this.puzzle = puzzleInfo;
         this.letterBuffer = [];
+        this.userFindWord = monomitter<string>();
     }
 
     handleKey(key: string) {
@@ -92,6 +101,11 @@ export class PuzzleLogic {
 
         if (key === 'Backspace') {
             this.letterBuffer.pop();
+        }
+
+        if (key === 'Enter') {
+            this.userFindWord.publish(this.letterBuffer.join(''));
+            this.letterBuffer = [];
         }
 
         if ('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.includes(key.toUpperCase())) {
@@ -117,5 +131,36 @@ export class PuzzleLogic {
         } else {
             return letterIndices.map((c) => toCoordinate(c));
         }
+    }
+
+    getTileValues(words: WordManager): TileInfo[] {
+        const values: TileInfo[] = [];
+        for (let i = 0; i < this.puzzle.sideLength ** 2; i++) {
+            values.push({ containing: 0, starting: 0 });
+        }
+
+        for (const word of words.allWords) {
+            // if this word has been found, don't include it
+            if (words.unlockedWords.has(word)) {
+                continue;
+            }
+
+            // find this word on the grid
+            const wordPosition = findWord(this.puzzle.sideLength, this.puzzle.letters, word, []);
+
+            if (wordPosition === null) {
+                throw new Error(`Could not find word ${word} on the grid`);
+            }
+
+            // mark the first letter as a starting point
+            values[wordPosition[0]].starting++;
+
+            // mark each letter in the word as containing
+            for (const letter of wordPosition) {
+                values[letter].containing++;
+            }
+        }
+
+        return values;
     }
 }
