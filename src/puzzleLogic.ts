@@ -95,7 +95,6 @@ export class PuzzleLogic {
 
     handleKey(key: string) {
         if (key === 'Escape') {
-            console.log('clearing letter buffer');
             this.letterBuffer = [];
         }
 
