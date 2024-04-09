@@ -2,15 +2,15 @@ import { Coordinate, PuzzleData } from './types';
 import { Monomitter, monomitter } from './monomitter';
 import { WordManager } from './wordManager';
 
-const toCoordinate = (index: number): Coordinate => {
-    return { x: index % 3, y: Math.floor(index / 3) };
+const toCoordinate = (index: number, sideLength: number): Coordinate => {
+    return { x: index % sideLength, y: Math.floor(index / sideLength) };
 };
 
-const toIdx = (coordinate: Coordinate): number => {
-    return coordinate.y * 3 + coordinate.x;
+const toIdx = (coordinate: Coordinate, sideLength: number): number => {
+    return coordinate.y * sideLength + coordinate.x;
 };
 
-const adjacent = (c: Coordinate) => {
+const adjacent = (c: Coordinate, sideLength: number) => {
     return [
         { x: c.x + 1, y: c.y }, // →
         { x: c.x, y: c.y - 1 }, // ↑
@@ -20,7 +20,7 @@ const adjacent = (c: Coordinate) => {
         { x: c.x + 1, y: c.y - 1 }, // ↗
         { x: c.x - 1, y: c.y - 1 }, // ↖
         { x: c.x - 1, y: c.y + 1 }, // ↙
-    ].filter(({ x, y }) => 0 <= x && x <= 2 && 0 <= y && y <= 2);
+    ].filter(({ x, y }) => 0 <= x && x < sideLength && 0 <= y && y < sideLength);
 };
 
 /**
@@ -34,6 +34,7 @@ const findWord = (
     visited: number[]
 ): number[] | null => {
     // we have found the entire word, nothing else left
+
     if (word === '') {
         return visited;
     }
@@ -55,8 +56,8 @@ const findWord = (
     } else {
         // we have already found a part of the word, time to look for the rest of it
         const lastLetterIdx = visited[visited.length - 1];
-        for (const neighbor of adjacent(toCoordinate(lastLetterIdx))) {
-            const neighborIdx = toIdx(neighbor);
+        for (const neighbor of adjacent(toCoordinate(lastLetterIdx, gridSize), gridSize)) {
+            const neighborIdx = toIdx(neighbor, gridSize);
             // have already visited this tile, ignore it
             if (visited.includes(neighborIdx)) {
                 continue;
@@ -128,7 +129,7 @@ export class PuzzleLogic {
         if (letterIndices === null) {
             return null;
         } else {
-            return letterIndices.map((c) => toCoordinate(c));
+            return letterIndices.map((c) => toCoordinate(c, this.puzzle.sideLength));
         }
     }
 
