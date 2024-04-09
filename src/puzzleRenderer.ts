@@ -83,6 +83,10 @@ export class PuzzleRenderer {
 
             start.innerText = formatNum(tileValues[i].starting);
             contains.innerText = formatNum(tileValues[i].containing);
+
+            if (tileValues[i].starting === 0 && tileValues[i].containing === 0) {
+                tile.classList.add('eliminated');
+            }
         }
     }
 }

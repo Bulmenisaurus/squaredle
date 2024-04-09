@@ -7,6 +7,7 @@ body {
     display: grid;
     place-items: center;
     height: 100vh;
+    font-family: RobotoWeb, Roboto, Arial, sans-serif;
 }
 
 #board-wrapper {
@@ -37,7 +38,13 @@ body {
     user-select: none;
 
     font-size: 40px;
-    font-family: RobotoWeb, Roboto, Arial, sans-serif;
+
+    transition: 0.5s;
+}
+
+.letter-container.eliminated {
+    border: none;
+    opacity: 0.4;
 }
 
 .start-num {
@@ -69,4 +76,12 @@ body {
 
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+#ui-container #word-opener {
+    font-family: unset;
+    background: none;
+    border: none;
+    font-size: 2.5em;
+    padding: 0.5em 1em;
 }
