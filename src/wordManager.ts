@@ -13,10 +13,24 @@ export class WordManager {
     wordElements: Map<string, HTMLSpanElement>;
     constructor(words: string[], popupWordContainer: HTMLDivElement) {
         this.allWords = new Set(words);
-        this.unlockedWords = new Set<string>();
+        this.unlockedWords = this.loadLocalStorage();
         this.popupWordContainer = popupWordContainer;
         this.wordElements = new Map();
         this.renderPopup();
+    }
+
+    loadLocalStorage(): Set<string> {
+        const saved = localStorage.getItem('words');
+
+        if (saved !== null) {
+            return new Set(saved.split(','));
+        } else {
+            return new Set();
+        }
+    }
+
+    saveToLocalStorage(words: Set<string>) {
+        localStorage.setItem('words', Array.from(words).join(','));
     }
 
     trySubmitWords(word: string): SubmitWordResponse {
@@ -29,6 +43,7 @@ export class WordManager {
         }
 
         this.unlockedWords.add(word);
+        this.saveToLocalStorage(this.unlockedWords);
         const wordElement = this.wordElements.get(word);
         if (wordElement === undefined) {
             console.error(`Word ${word} has no corresponding HTML element`);
