@@ -98,6 +98,7 @@ body {
     background: white;
     overflow-y: scroll;
     display: none;
+    z-index: 2;
 }
 
 #words-popup h1,
