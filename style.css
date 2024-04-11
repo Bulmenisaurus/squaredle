@@ -19,10 +19,10 @@ body {
     grid-row: 1;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    width: 400px;
-    height: 400px;
-    gap: 5%;
+    grid-template-columns: repeat(31, 1fr);
+    width: 800px;
+    height: 800px;
+    gap: 1%;
 }
 
 #puzzle-container .letter-container {
@@ -37,7 +37,7 @@ body {
 
     user-select: none;
 
-    font-size: 40px;
+    font-size: 10px;
 
     transition: 0.5s;
 }
@@ -49,14 +49,14 @@ body {
 
 .start-num {
     color: rgb(203, 15, 15);
-    font-size: 20px;
+    font-size: 5px;
     position: absolute;
     left: 10%;
     bottom: 10%;
 }
 
 .include-num {
-    font-size: 20px;
+    font-size: 5px;
     position: absolute;
     right: 10%;
     bottom: 10%;

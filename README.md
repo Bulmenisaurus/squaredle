@@ -1,4 +1,6 @@
 # Squaredle
 
--   [Words list](https://raw.githubusercontent.com/RussellDash332/unsquaredle/main/data/litscape.txt)
--   [Prior Art](https://squaredle-maker.pages.dev)
+## List of helpful projects
+
+-   [Squaredle Maker](https://squaredle-maker.pages.dev/)
+-   [Squaredle Solver](https://github.com/minoli-g/squaredle-solver)

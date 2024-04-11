@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Manually filter the good words from bad ones</title>
+    </head>
+    <body>
+        <div>
+            <h1>Should <span id="word">?</span> be a word?</h1>
+            <h2><span id="current-idx">?</span> / <span id="total">?</span></h2>
+            <button id="yes">Yes</button>
+            <button id="no">No</button>
+        </div>
+    </body>
+    <script>
+        const main = async () => {
+            const currentWordElement = document.getElementById('word');
+            const currentIdxElement = document.getElementById('current-idx');
+            const totalAmountElement = document.getElementById('total');
+
+            const yesButton = document.getElementById('yes');
+            const noButton = document.getElementById('no');
+
+            const f = await fetch('./puzzle-bad.txt');
+            const words = await f.json();
+
+            let i = 7841;
+            const acceptedWords = [];
+
+            const update = () => {
+                currentWordElement.innerText = words[i];
+                currentIdxElement.innerText = `${i + 1}`;
+                totalAmountElement.innerText = words.length;
+            };
+
+            yesButton.onclick = () => {
+                acceptedWords.push(words[i]);
+                console.log(acceptedWords);
+                i++;
+                update();
+            };
+
+            noButton.onclick = () => {
+                i++;
+                update();
+            };
+
+            update();
+        };
+
+        main();
+    </script>
+</html>

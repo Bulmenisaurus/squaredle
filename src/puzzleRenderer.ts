@@ -48,12 +48,11 @@ export class PuzzleRenderer {
     }
 
     renderWordLine(word: PolygonalChain) {
-        const gapSize = 400 * (5 / 100);
-        const nonGap = 400 - (this.puzzle.sideLength - 1) * gapSize;
+        const gapSize = 800 * (1 / 100);
+        const nonGap = 800 - (this.puzzle.sideLength - 1) * gapSize;
         const tileSize = nonGap / this.puzzle.sideLength;
         const centerDist = tileSize + gapSize;
         const offset = tileSize / 2;
-        console.log({});
 
         const formattedPoints = word
             .map(({ x, y }) => ({ x: x * centerDist + offset, y: y * centerDist + offset }))
