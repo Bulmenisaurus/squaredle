@@ -228,7 +228,7 @@ a ${r},${r} 0 1,1 ${r * 2},0`;
       const offset = tileSize / 2;
       const formattedPoints = word.map(({ x, y }) => ({ x: x * centerDist + offset, y: y * centerDist + offset })).map(({ x, y }, idx) => {
         if (idx === 0) {
-          const circle = circleToPath(x, y, 10);
+          const circle = circleToPath(x, y, 4);
           return `${circle} M ${x.toFixed(1)} ${y.toFixed(1)}`;
         } else {
           return `L ${x.toFixed(1)} ${y.toFixed(1)}`;

@@ -59,7 +59,7 @@ export class PuzzleRenderer {
             .map(({ x, y }, idx) => {
                 // for the first element, we need to move the path here and draw a circle
                 if (idx === 0) {
-                    const circle = circleToPath(x, y, 10);
+                    const circle = circleToPath(x, y, 4);
                     return `${circle} M ${x.toFixed(1)} ${y.toFixed(1)}`;
                 } else {
                     return `L ${x.toFixed(1)} ${y.toFixed(1)}`;
