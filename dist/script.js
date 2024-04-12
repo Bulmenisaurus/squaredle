@@ -260,8 +260,29 @@ a ${r},${r} 0 1,1 ${r * 2},0`;
   };
 
   // src/wordManager.ts
+  var startLettersRevealed = (length) => {
+    let num = 1;
+    if (length >= 6)
+      num++;
+    if (length >= 12)
+      num++;
+    return num;
+  };
+  var endLettersRevealed = (length) => {
+    let num = 0;
+    if (length >= 7)
+      num++;
+    if (length >= 8)
+      num++;
+    if (length >= 10)
+      num++;
+    return num;
+  };
   var wordHint = (word) => {
-    return word[0] + "*".repeat(word.length - 1);
+    const start = startLettersRevealed(word.length);
+    const end = endLettersRevealed(word.length);
+    const numHidden = word.length - start - end;
+    return word.slice(0, start) + "*".repeat(numHidden) + word.slice(word.length - end);
   };
   var WordManager = class {
     constructor(words, popupWordContainer) {

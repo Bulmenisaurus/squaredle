@@ -1,9 +1,29 @@
 type SubmitWordResponse = 'invalidWord' | 'alreadyGuessed' | 'success';
 
-const wordHint = (word: string) => {
-    // TODO: more?
+const startLettersRevealed = (length: number) => {
+    let num = 1;
 
-    return word[0] + '*'.repeat(word.length - 1);
+    if (length >= 6) num++;
+    if (length >= 12) num++;
+
+    return num;
+};
+
+const endLettersRevealed = (length: number) => {
+    let num = 0;
+    if (length >= 7) num++;
+    if (length >= 8) num++;
+    if (length >= 10) num++;
+
+    return num;
+};
+
+const wordHint = (word: string) => {
+    const start = startLettersRevealed(word.length);
+    const end = endLettersRevealed(word.length);
+    const numHidden = word.length - start - end;
+
+    return word.slice(0, start) + '*'.repeat(numHidden) + word.slice(word.length - end);
 };
 
 export class WordManager {
