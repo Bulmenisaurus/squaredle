@@ -22,13 +22,13 @@ body {
     grid-template-columns: repeat(31, 1fr);
     width: 800px;
     height: 800px;
-    gap: 1%;
+    gap: 0.5%;
 }
 
 #puzzle-container .letter-container {
     background-color: #e0e0e0;
     border: 1px solid grey;
-    border-radius: 5px;
+    border-radius: 2px;
 
     display: flex;
     justify-content: center;
@@ -51,8 +51,8 @@ body {
     color: rgb(203, 15, 15);
     font-size: 5px;
     position: absolute;
-    left: 10%;
-    bottom: 10%;
+    left: 6%;
+    bottom: 6%;
 }
 
 .include-num {

@@ -221,7 +221,7 @@ a ${r},${r} 0 1,1 ${r * 2},0`;
       return tiles;
     }
     renderWordLine(word) {
-      const gapSize = 800 * (1 / 100);
+      const gapSize = 800 * (0.5 / 100);
       const nonGap = 800 - (this.puzzle.sideLength - 1) * gapSize;
       const tileSize = nonGap / this.puzzle.sideLength;
       const centerDist = tileSize + gapSize;

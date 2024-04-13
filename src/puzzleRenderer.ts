@@ -48,7 +48,7 @@ export class PuzzleRenderer {
     }
 
     renderWordLine(word: PolygonalChain) {
-        const gapSize = 800 * (1 / 100);
+        const gapSize = 800 * (0.5 / 100);
         const nonGap = 800 - (this.puzzle.sideLength - 1) * gapSize;
         const tileSize = nonGap / this.puzzle.sideLength;
         const centerDist = tileSize + gapSize;
